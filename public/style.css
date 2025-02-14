@@ -2,13 +2,41 @@ body {
     font-family: Arial, sans-serif;
     text-align: center;
     padding: 20px;
+    background-color: #0f1011;
 }
 
 button {
-    background-color: #007BFF;
+    background-color: #0f1011;
+    border: 3px solid #424240;
     color: white;
-    border: none;
-    padding: 10px 20px;
+    padding: 15px 40px;
     cursor: pointer;
     font-size: 18px;
+    transition: background-color 0.15s ease-in-out, border 0.15s ease-in-out;
+}
+
+button:hover {
+    border: 3px solid #FFE710;
+}
+
+.amarillo{
+    background-color: #FFE710;
+    height: 100px;
+    width: 100px;
+    
+}
+
+.stratagem{
+    height: 150px;
+    width: 150px;
+    background-color: #181818;
+    margin: 10px;
+    padding: 10px;
+    filter: saturate(150%);
+}
+
+.texto{
+    color: white;
+    text-align: center;
+    font-size: 1.5vw;
 }
