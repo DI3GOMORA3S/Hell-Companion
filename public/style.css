@@ -35,8 +35,32 @@ button:hover {
     filter: saturate(150%);
 }
 
+.first-str{
+    height: 180px;
+    width: 180px;
+    border: 6px solid #FFE710;
+}
+
 .texto{
     color: white;
     text-align: center;
     font-size: 1.5vw;
+}
+
+#cont-str{
+    width: 100%;
+    height: auto;
+    /* background-color: #FFE710; */
+}
+
+#cont-keys{
+    width: 100%;
+    height: auto;
+    margin-top: 20px;
+}
+
+.str-key{
+    height: 60px;
+    width: 60px;
+    margin: 10px;
 }
