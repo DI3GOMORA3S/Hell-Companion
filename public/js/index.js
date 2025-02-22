@@ -79,7 +79,7 @@ function manejarInput(event) {
         const error = new Audio(`./sounds/effects/error${Math.floor(Math.random() * 4) + 1}.wav`);
         error.play();
 
-        shakeElement(document.getElementById('cont-keys'))
+        shakeElement(document.getElementById('cont-keys'));
     }
 }
 
@@ -87,7 +87,13 @@ function showFirstStr (array){
     document.getElementById('cont-str').innerHTML = ""
     for (let i = 0; i < array.length; i++) {
         if (i == 0){
-            document.getElementById('cont-str').innerHTML += `<img class="first-str stratagem" src="${array[i].img}" alt="">`
+            document.getElementById('cont-str').innerHTML += `<img class="first-str stratagem" src="${array[i].img}" alt="">`;
+            
+            //cambia texto de stratagema
+            const texto = array[i].name;
+            const resultado = texto.toUpperCase();
+
+            document.getElementById("str-name").innerText = `${resultado}`;
         } else {
             document.getElementById('cont-str').innerHTML += `<img class=" stratagem" src="${array[i].img}" alt="">`
         }

@@ -11,7 +11,7 @@ body {
     background-image: url(./images/Screenshot\ \(11\).png);
     background-size: cover;
     background-position: center;
-    filter: grayscale(100%) blur(4px);
+    filter: grayscale(100%) blur(8px);
     z-index: -1;
 }
 
@@ -40,7 +40,7 @@ button:hover {
     height: 150px;
     width: 150px;
     background-color: #181818;
-    margin: 10px;
+    margin-right: 1%;
     padding: 10px;
     filter: saturate(150%);
 }
@@ -48,7 +48,7 @@ button:hover {
 .first-str{
     height: 180px;
     width: 180px;
-    border: 6px solid #FFE710;
+    border: 8px solid #FFE710;
 }
 
 .texto{
@@ -57,21 +57,45 @@ button:hover {
     font-size: 1.5vw;
 }
 
-#cont-str{
-    width: 100%;
-    height: auto;
-    /* background-color: #FFE710; */
+#cont-str {
+    width: 70%; /* Controla el ancho */
+    height: 50%;
+    display: flex;
+    justify-content: flex-start; /* Alinea las cajas a la izquierda */
+    align-items: center; /* Asegura alineación vertical */
+    flex-wrap: wrap; /* Evita que los elementos se desborden */
+    gap: 10px; /* Espacio entre los elementos */
+    margin: auto; /* Mantiene el contenedor centrado */
+    text-align: left;
+}
+
+#str-name{
+    background-color: #FFE710;
+    width: 70%;
+    font-size: 30px;
+    padding: 10px 0px 10px 0px;
+    margin: 0px;
 }
 
 #cont-keys{
-    width: 100%;
+    width: 70%;
     height: auto;
-    margin-top: 20px;
+    /* margin-top: 20px; */
+    padding: 30px 0px 30px 0px;
+    border-bottom: 10px solid #FFE710;
+}
+
+#game-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center; /* Centra los hijos verticalmente si el padre tiene altura fija */
+    height: 100%;
 }
 
 .str-key{
-    height: 60px;
-    width: 60px;
+    height: 80px;
+    width: 80px;
     margin: 10px;
 }
 
