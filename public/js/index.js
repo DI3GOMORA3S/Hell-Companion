@@ -6,6 +6,8 @@ function shuffleArray(array) {
     return array;
 }
 
+
+
 //Array con todas las estratagemas y sus detalles
 const stratagems = [
     {name: "machine-gun", keys: ["ArrowDown", "ArrowLeft", "ArrowDown", "ArrowUp", "ArrowRight"], img: "./images/stratagems/machine-gun.svg"},
@@ -32,8 +34,17 @@ const stratagems = [
 ]
 
 let shuffledStr = []
+// Musica que suena de fondo mientras se juega
+const playingMusic = new Audio("./sounds/effects/playing.wav");
 
 function startGame() {
+    // arrancar musica
+    introMusic.pause();
+    introMusic.currentTime = 0;
+
+    playingMusic.loop = true; // Habilita el loop
+    playingMusic.play(); // Inicia el audio
+
     shuffledStr = shuffleArray([...stratagems]).slice(0, 6);
     showFirstStr(shuffledStr);
     showKeySecuence(shuffledStr);
@@ -62,6 +73,17 @@ function manejarInput(event) {
 
         if (posicionActual === keysActuales.length) {
             shuffledStr.shift();
+
+            if (shuffledStr.length === 0) {
+                // Si ya no quedan más estratagemas, detiene la música
+                playingMusic.pause();
+                playingMusic.currentTime = 0; // Reinicia la música al inicio para futuros juegos
+                console.log("Juego terminado, música detenida");
+
+                const success = new Audio(`./sounds/effects/success${Math.floor(Math.random() * 3) + 1}.wav`);
+                success.play()
+            }
+
             showFirstStr(shuffledStr);
             showKeySecuence(shuffledStr);
 
@@ -107,6 +129,9 @@ function showKeySecuence (array){
     }
 }
 
+
+// #### VARIOUS FUNCTIONS ####
+
 // efecto de sacudirse
 function shakeElement(element) {
     element.classList.add("shake");
@@ -114,4 +139,16 @@ function shakeElement(element) {
     setTimeout(() => {
         element.classList.remove("shake");
     }, 500);
+}
+
+const introMusic = new Audio(`./sounds/effects/stratagem_hero.wav`);
+
+// close initial pop up
+function closePopup() {
+    document.getElementById("popup").style.display = "none";
+    document.getElementById("overlay").style.display = "none";
+
+    
+    introMusic.loop = true;
+    introMusic.play();
 }
