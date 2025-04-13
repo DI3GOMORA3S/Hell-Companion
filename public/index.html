@@ -1,30 +1,75 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Stratagem Hero</title>
-    <link rel="icon" href="./images/icons/helldivers.png">
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Galaxy Map</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <div class="background"></div>
-
-    <div id="overlay" class="overlay"></div>
-    <div id="popup">
-        <img class="stratagem" src="./images/icons/super-earth-logo.webp" alt="">
-        <p>Bienvenido, esto es un juego hecho por un fan sin ánimo de lucro.</p>
-        <button onclick="closePopup()">Cerrar</button>
+  <div id="viewport">
+    <div id="map-container">
+      <img id="galaxy-map" src="assets/mapa-base.png" alt="Mapa Galáctico">
+      <!-- Planetas posicionados -->
+      <img src="assets/planeta.png" class="planeta" style="top: 310px; left: 460px;">
+      <img src="assets/planeta.png" class="planeta" style="top: 580px; left: 250px;">
     </div>
+  </div>
 
-    <div id="game-container">
-        <h1 style="color: white;" >Stratagem Hero</h1>
-        <button id="testButton" onclick="startGame()" >Start</button>
-        <div id="cont-str"></div>
-        <h3 id="str-name" >EJ ESTRATAGEMA</h3>
-        <div id="cont-keys">
-        </div>
-    </div>    
-    <script src="js/index.js"></script>
+  <script>
+    const contenedor = document.getElementById("map-container");
+let scale = 1;
+let posX = -500;
+let posY = -500;
+let isDragging = false;
+let startX, startY;
+
+function actualizarTransformacion() {
+  contenedor.style.transform = `translate(${posX}px, ${posY}px) scale(${scale})`;
+}
+
+actualizarTransformacion(); // centrar mapa inicialmente
+
+// Zoom centrado en el mouse
+document.getElementById("viewport").addEventListener("wheel", (e) => {
+  e.preventDefault();
+
+  const zoomFactor = 0.1;
+  const prevScale = scale;
+
+  scale += e.deltaY > 0 ? -zoomFactor : zoomFactor;
+  scale = Math.min(Math.max(scale, 0.5), 4); // límites de zoom
+
+  const rect = contenedor.getBoundingClientRect();
+  const mouseX = (e.clientX - rect.left) / prevScale;
+  const mouseY = (e.clientY - rect.top) / prevScale;
+
+  posX -= (mouseX * scale - mouseX * prevScale);
+  posY -= (mouseY * scale - mouseY * prevScale);
+
+  actualizarTransformacion();
+});
+
+// Pan (arrastrar)
+document.addEventListener("mousedown", (e) => {
+  if (e.button !== 0) return; // solo botón izquierdo
+  isDragging = true;
+  startX = e.clientX - posX;
+  startY = e.clientY - posY;
+  document.body.style.cursor = "grabbing";
+});
+
+document.addEventListener("mousemove", (e) => {
+  if (!isDragging) return;
+  posX = e.clientX - startX;
+  posY = e.clientY - startY;
+  actualizarTransformacion();
+});
+
+document.addEventListener("mouseup", () => {
+  isDragging = false;
+  document.body.style.cursor = "grab";
+});
+
+  </script>
 </body>
 </html>
