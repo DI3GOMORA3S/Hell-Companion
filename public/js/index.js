@@ -31,6 +31,21 @@ function obtenerDatos() {
     });
 }
 
+let planetInfo = []
+
+function ObtPlanetInfo() {
+    fetch('/api/planet-info')
+    .then(res => res.json())
+    .then(data => {
+        planetInfo = data;
+      console.log('✅ Datos actualizados:', planetInfo);
+      actualizarTooltips();
+    })
+    .catch(err => {
+      console.error('Error al actualizar los datos:', err);
+    });
+}
+
 // Esta función vuelve a conectar eventos y contenido si es necesario
 function actualizarTooltips() {
   const planetasDOM = document.querySelectorAll('.planeta');
@@ -42,9 +57,11 @@ function actualizarTooltips() {
     if (planeta) {
       el.addEventListener('mouseenter', () => {
         tooltip.innerHTML = `
-          <strong>Planeta #${index}</strong><br>
-          Jugadores: ${planeta.players}<br>
-          Vida: ${planeta.health}
+            <h3>${planetInfo[index].name}</h3>
+            <strong>Planeta #${index}</strong><br>
+            Jugadores: ${planeta.players}<br>
+            Vida: ${planeta.health}
+            <p>${planetInfo[index].biome?.description ? planetInfo[index].biome.description : ""}</p>
         `;
         tooltip.style.display = "block";
       });
@@ -63,6 +80,7 @@ function actualizarTooltips() {
 
 // 🔄 Carga inicial
 obtenerDatos();
+ObtPlanetInfo()
 
 // 🔁 Refrescar datos cada 30 segundos (30000 ms)
 setInterval(obtenerDatos, 30000);

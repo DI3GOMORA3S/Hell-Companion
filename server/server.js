@@ -29,6 +29,17 @@ app.get('/api/planetas', async (req, res) => {
     }
   });
 
+app.get('/api/planet-info', async (req, res) => {
+try {
+    const response = await axios.get('https://helldiverstrainingmanual.com/api/v1/planets');
+    const planetInfo = response.data;
+    res.json(planetInfo);
+} catch (err) {
+    console.error('Error al obtener datos de la API', err.message);
+    res.status(500).json({ error: 'Error interno del servidor' });
+}
+});
+
 // Iniciar servidor
 app.listen(PORT, () => {
     console.log(`✅ Servidor corriendo en http://localhost:${PORT}`);
