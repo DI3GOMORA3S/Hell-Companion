@@ -9,67 +9,13 @@
   <div id="viewport">
     <div id="map-container">
       <img id="galaxy-map" src="assets/mapa-base.png" alt="Mapa Galáctico">
-      <!-- Planetas posicionados -->
+
+      <!-- Planetas ubicados encima del mapa -->
       <img src="assets/planeta.png" class="planeta" style="top: 310px; left: 460px;">
       <img src="assets/planeta.png" class="planeta" style="top: 580px; left: 250px;">
     </div>
   </div>
 
-  <script>
-    const contenedor = document.getElementById("map-container");
-let scale = 1;
-let posX = -500;
-let posY = -500;
-let isDragging = false;
-let startX, startY;
-
-function actualizarTransformacion() {
-  contenedor.style.transform = `translate(${posX}px, ${posY}px) scale(${scale})`;
-}
-
-actualizarTransformacion(); // centrar mapa inicialmente
-
-// Zoom centrado en el mouse
-document.getElementById("viewport").addEventListener("wheel", (e) => {
-  e.preventDefault();
-
-  const zoomFactor = 0.1;
-  const prevScale = scale;
-
-  scale += e.deltaY > 0 ? -zoomFactor : zoomFactor;
-  scale = Math.min(Math.max(scale, 0.5), 4); // límites de zoom
-
-  const rect = contenedor.getBoundingClientRect();
-  const mouseX = (e.clientX - rect.left) / prevScale;
-  const mouseY = (e.clientY - rect.top) / prevScale;
-
-  posX -= (mouseX * scale - mouseX * prevScale);
-  posY -= (mouseY * scale - mouseY * prevScale);
-
-  actualizarTransformacion();
-});
-
-// Pan (arrastrar)
-document.addEventListener("mousedown", (e) => {
-  if (e.button !== 0) return; // solo botón izquierdo
-  isDragging = true;
-  startX = e.clientX - posX;
-  startY = e.clientY - posY;
-  document.body.style.cursor = "grabbing";
-});
-
-document.addEventListener("mousemove", (e) => {
-  if (!isDragging) return;
-  posX = e.clientX - startX;
-  posY = e.clientY - startY;
-  actualizarTransformacion();
-});
-
-document.addEventListener("mouseup", () => {
-  isDragging = false;
-  document.body.style.cursor = "grab";
-});
-
-  </script>
+  <script src="./js/index.js"></script>
 </body>
 </html>
