@@ -6,16 +6,24 @@
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
+  <div id="tooltip" class="tooltip">Info del planeta</div>
+
+  
   <div id="viewport">
     <div id="map-container">
-      <img id="galaxy-map" src="assets/mapa-base.png" alt="Mapa Galáctico">
+      <img id="galaxy-map" src="./images/Base temporal.svg" alt="Mapa Galáctico" draggable="false">
 
       <!-- Planetas ubicados encima del mapa -->
-      <img src="assets/planeta.png" class="planeta" style="top: 310px; left: 460px;">
-      <img src="assets/planeta.png" class="planeta" style="top: 580px; left: 250px;">
+      <img draggable="false" src="./images/super-earth.png" class="planeta" style="top: 480px; left: 488px;" data-index="0">
+      <img draggable="false" src="assets/planeta.png" class="planeta" style="top: 580px; left: 250px;" data-index="1">
+
+
     </div>
   </div>
+  
 
-  <script src="./js/index.js"></script>
+
+  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
+  <script type="module" src="./js/index.js"></script>
 </body>
 </html>
