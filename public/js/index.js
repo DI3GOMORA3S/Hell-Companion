@@ -56,12 +56,63 @@ function actualizarTooltips() {
 
     if (planeta) {
       el.addEventListener('mouseenter', () => {
-        tooltip.innerHTML = `
-            <h3>${planetInfo[index].name}</h3>
-            <strong>Planeta #${index}</strong><br>
-            Jugadores: ${planeta.players}<br>
-            Vida: ${planeta.health}
-            <p>${planetInfo[index].biome?.description ? planetInfo[index].biome.description : ""}</p>
+
+        // prueba de liberated real
+        let liberated = 1000000;
+        if (planeta.owner != 1){
+          liberated = liberated - planeta.health;
+          liberated = liberated / 10000
+        } else {
+          liberated = planeta.health
+          liberated = liberated / 10000
+        }
+        // prueba de liberated real
+
+        // prueba colores de barras
+        let dueño = ""
+        switch (planeta.owner) {
+          case 1:
+            dueño = "super-earth-owned"
+            break;
+
+          case 2:
+            
+            break;
+
+          case 3:
+            
+            break;
+
+          case 4:
+            
+            break;
+      
+        }
+        // prueba colores de barras
+
+        tooltip.innerHTML = ` 
+            <div class="planeta-card">
+              <div class="header">
+                <img draggable="false" src="./images/icons/faction-icon-${planeta.owner}.webp" style="width: 40px; height: 40px; object-fit: contain;" alt="">
+                <span class="nombre">${planetInfo[index].name}</span>
+                <img src="" alt="Fondo del planeta">
+              </div>
+            
+              <div class="progreso">
+                <div class="barra">
+                  <div class="liberado" style="width: ${liberated}%;"></div>
+                </div>
+                <span class="porcentaje">${liberated}% LIBERATED</span>
+              </div>
+            
+              <div class="stats">
+                <div class="jugadores">👤 0</div>
+                <div class="recursos">
+                <img draggable="false" src="./images/divers-icon.svg" style="width: 20px; height: 20px;" alt="">
+                ${planeta.players}
+                </div>
+              </div>
+            </div>
         `;
         tooltip.style.display = "block";
       });
@@ -84,68 +135,3 @@ ObtPlanetInfo()
 
 // 🔁 Refrescar datos cada 30 segundos (30000 ms)
 setInterval(obtenerDatos, 30000);
-
-
-
-
-
-
-// ##########################################
-// ##### Movimiento y zoom en la página #####
-const viewport = document.getElementById("viewport");
-const contenedor = document.getElementById("map-container");
-
-let scale = 1;
-let posX = -500;
-let posY = -500;
-let isDragging = false;
-let startX, startY;
-
-function actualizarTransformacion() {
-  contenedor.style.transform = `translate(${posX}px, ${posY}px) scale(${scale})`;
-}
-
-actualizarTransformacion();
-
-// 📌 Zoom centrado en el cursor
-viewport.addEventListener("wheel", (e) => {
-  e.preventDefault();
-  const zoomFactor = 0.1;
-  const previousScale = scale;
-
-  scale += e.deltaY > 0 ? -zoomFactor : zoomFactor;
-  scale = Math.min(Math.max(scale, 0.5), 4);
-
-  const rect = contenedor.getBoundingClientRect();
-  const offsetX = e.clientX - rect.left;
-  const offsetY = e.clientY - rect.top;
-
-  const ratio = scale / previousScale;
-
-  posX -= offsetX * (ratio - 1);
-  posY -= offsetY * (ratio - 1);
-
-  actualizarTransformacion();
-});
-
-// 📌 Pan (arrastrar)
-viewport.addEventListener("mousedown", (e) => {
-  isDragging = true;
-  startX = e.clientX - posX;
-  startY = e.clientY - posY;
-  viewport.style.cursor = "grabbing";
-});
-
-viewport.addEventListener("mousemove", (e) => {
-  if (!isDragging) return;
-  posX = e.clientX - startX;
-  posY = e.clientY - startY;
-  actualizarTransformacion();
-});
-
-document.addEventListener("mouseup", () => {
-  isDragging = false;
-  viewport.style.cursor = "grab";
-});
-// ##### Movimiento y zoom en la página #####
-// ##########################################

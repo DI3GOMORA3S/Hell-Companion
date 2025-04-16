@@ -38,22 +38,11 @@ html, body {
 }
 
 .tooltip {
-  /* width: 10vw;
-  height: 8vh; */
-
   width: fit-content;
   height: fit-content;
   text-align: center;
-  padding: 10px;
-
-
   position: absolute;
-  background-color: black;
-  color: #fff;
-  border: 1px #fbea05 solid;
-  margin: 20px;
   pointer-events: none;
-  font-size: 14px;
   white-space: nowrap;
   z-index: 999;
   display: none;
@@ -73,9 +62,9 @@ html, body {
 
 
 
-/* .planeta-card {
-  width: 180px;
-  border: 2px solid gold;
+.planeta-card {
+  width: 250px;
+  border: 2px solid #fbea05;
   background-color: black;
   font-family: sans-serif;
   color: white;
@@ -94,7 +83,7 @@ html, body {
 
 .header .nombre {
   font-weight: bold;
-  color: gold;
+  color: #fbea05;
   font-size: 14px;
   margin-bottom: 3px;
 }
@@ -117,14 +106,14 @@ html, body {
   width: 100%;
   height: 12px;
   background: #333;
-  border: 1px solid gold;
+  border: 1px solid #fbea05;
   position: relative;
   margin-bottom: 4px;
 }
 
 .liberado {
   height: 100%;
-  background: gold;
+  background: #fbea05;
 }
 
 .porcentaje {
@@ -136,6 +125,6 @@ html, body {
   display: flex;
   justify-content: space-between;
   font-size: 12px;
-  border-top: 1px solid gold;
+  border-top: 1px solid #fbea05;
   padding-top: 4px;
-} */
+}
