@@ -76,15 +76,15 @@ function actualizarTooltips() {
             break;
 
           case 2:
-            
+            dueño = "terminid-owned"
             break;
 
           case 3:
-            
+            dueño = "automaton-owned"
             break;
 
           case 4:
-            
+            dueño = "iluminate-owned"
             break;
       
         }
@@ -94,8 +94,7 @@ function actualizarTooltips() {
             <div class="planeta-card">
               <div class="header">
                 <img draggable="false" src="./images/icons/faction-icon-${planeta.owner}.webp" style="width: 40px; height: 40px; object-fit: contain;" alt="">
-                <span class="nombre">${planetInfo[index].name}</span>
-                <img src="" alt="Fondo del planeta">
+                <span class="nombre">${planetInfo[index].name.toUpperCase()}</span>
               </div>
             
               <div class="progreso">
@@ -106,10 +105,9 @@ function actualizarTooltips() {
               </div>
             
               <div class="stats">
-                <div class="jugadores">👤 0</div>
-                <div class="recursos">
-                <img draggable="false" src="./images/divers-icon.svg" style="width: 20px; height: 20px;" alt="">
-                ${planeta.players}
+                <div class="jugadores">
+                  <img draggable="false" src="./images/divers-icon.svg" style="width: 20px; height: 20px;" alt="">
+                  ${planeta.players}
                 </div>
               </div>
             </div>
@@ -133,5 +131,5 @@ function actualizarTooltips() {
 obtenerDatos();
 ObtPlanetInfo()
 
-// 🔁 Refrescar datos cada 30 segundos (30000 ms)
-setInterval(obtenerDatos, 30000);
+// 🔁 Refrescar datos cada 60 segundos (60000 ms)
+setInterval(obtenerDatos, 60000);
