@@ -17,20 +17,21 @@ actualizarTransformacion();
 
 viewport.addEventListener("wheel", (e) => {
   e.preventDefault();
-  const zoomFactor = 0.1;
-  const previousScale = scale;
 
-  scale += e.deltaY > 0 ? -zoomFactor : zoomFactor;
-  scale = Math.min(Math.max(scale, 0.5), 4);
+  const zoomIntensity = 0.2;
+  const delta = -e.deltaY;
+  const zoom = Math.exp(delta * zoomIntensity / 100);
+
+  const previousScale = scale;
+  scale *= zoom;
+  scale = Math.min(Math.max(scale, 1), 7);
 
   const rect = contenedor.getBoundingClientRect();
   const offsetX = e.clientX - rect.left;
   const offsetY = e.clientY - rect.top;
 
-  const ratio = scale / previousScale;
-  
-  posX -= offsetX * (ratio - 1);
-  posY -= offsetY * (ratio - 1);
+  posX -= offsetX * (scale / previousScale - 1);
+  posY -= offsetY * (scale / previousScale - 1);
 
   actualizarTransformacion();
 });
