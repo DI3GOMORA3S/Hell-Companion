@@ -94,7 +94,7 @@ function actualizarTooltips() {
             <div class="planeta-card">
               <div class="header">
                 <img draggable="false" src="./images/icons/faction-icon-${planeta.owner}.webp" style="width: 40px; height: 40px; object-fit: contain;" alt="">
-                <span class="nombre">${planetInfo[index].name.toUpperCase()}</span>
+                <span class="nombre ${dueño}">${planetInfo[index].name.toUpperCase()}</span>
               </div>
             
               <div class="progreso">
