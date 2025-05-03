@@ -36,10 +36,6 @@ html, body {
   width: 12px;
   height: 12px;
   border-radius: 50%;
-
-  padding: 1px;
-  border: 1px dashed #fbea05;
-  box-sizing: border-box;
 }
 
 .planeta:hover{
@@ -70,10 +66,38 @@ html, body {
 
 
 /* ##### Colores facciones ##### */
-.super-earth-owned{color: #a7daeb;}
-.terminid-owned{color: #ffb900;}
-.automaton-owned{color: #ff6263;}
-.iluminate-owned{color: #6b3aba;}
+.super-earth-owned   {
+  padding: 1px;
+  border: 1px solid #a7daeb;
+  box-sizing: border-box;
+}
+.super-earth-title{color: #a7daeb;}
+
+.terminid-owned {
+  padding: 1px;
+  border: 1px solid #ffb900;
+  box-sizing: border-box;
+}
+.terminid-title{color: #ffb900;}
+
+.automaton-owned {
+  padding: 1px;
+  border: 1px solid #ff6263;
+  box-sizing: border-box;
+  filter: 
+  drop-shadow(0 0 20px #fa0000)
+  drop-shadow(0 0 20px #fa0000)
+  drop-shadow(0 0 20px #fa0000)
+  drop-shadow(0 0 20px #fa0000);
+}
+.automaton-title{color: #ff6263;}
+
+.iluminate-owned {
+  padding: 1px;
+  border: 1px solid #6b3aba;
+  box-sizing: border-box;
+}
+.iluminate-title{color: #6b3aba;}
 /* ##### Colores facciones ##### */
 
 
@@ -135,6 +159,7 @@ html, body {
   font-size: 12px;
   border-top: 1px solid #fbea05;
   padding-top: 4px;
+  margin-top: 10px;
 }
 
 .jugadores {
