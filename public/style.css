@@ -36,10 +36,12 @@ html, body {
   width: 12px;
   height: 12px;
   border-radius: 50%;
+  transition: transform 0.2s ease;
+  transform-origin: center; /* Esto asegura que escale desde el centro */
 }
 
 .planeta:hover{
-  filter: drop-shadow(0 0 1px rgb(255, 255, 255));;
+  transform: scale(1.5);
 }
 
 .super-earth {
@@ -49,6 +51,7 @@ html, body {
   border-radius: 50%;
   filter: 
   brightness(1.5) saturate(1.6) contrast(1.1)
+  drop-shadow(0 0 20px rgb(23, 177, 238))
   drop-shadow(0 0 20px rgb(23, 177, 238));
 
 }
@@ -77,6 +80,11 @@ html, body {
   padding: 1px;
   border: 1px solid #ffb900;
   box-sizing: border-box;
+  filter: 
+  drop-shadow(0 0 15px #ffb900)
+  drop-shadow(0 0 15px #ffb900)
+  drop-shadow(0 0 15px #ffb900)
+  drop-shadow(0 0 15px #ffb900);
 }
 .terminid-title{color: #ffb900;}
 
@@ -85,10 +93,10 @@ html, body {
   border: 1px solid #ff6263;
   box-sizing: border-box;
   filter: 
-  drop-shadow(0 0 20px #fa0000)
-  drop-shadow(0 0 20px #fa0000)
-  drop-shadow(0 0 20px #fa0000)
-  drop-shadow(0 0 20px #fa0000);
+  drop-shadow(0 0 15px #fa0000)
+  drop-shadow(0 0 15px #fa0000)
+  drop-shadow(0 0 15px #fa0000)
+  drop-shadow(0 0 15px #fa0000);
 }
 .automaton-title{color: #ff6263;}
 
